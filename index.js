@@ -1,15 +1,14 @@
 const express = require("express");
 const app = express();
 const hbs = require("hbs");
-require("./hbs/helpers.js")
+require("./hbs/helpers.js");
 // Using hbs as the default view engine requires just one line of code in your app setup. This will render .hbs files when res.render is called.
 //Express HBS ENGINE
 
+const port = process.env.PORT || 3000;
+
 hbs.registerPartials(__dirname + "/views/partials");
 app.set("view engine", "hbs");
-
-
-
 
 //middlewares para filtrar por rutas,es una isntruccion o calback que se ejecuta siempre
 //simpre sin iportar la url de la peticion, "filtra las peticiones"
@@ -22,13 +21,13 @@ app.use(express.static(__dirname + "/public"));
 
 app.get("/home", function (req, res) {
   //metodo para renderizar con le motor especificado, se le puede pasar como argumento un objeto
-  res.render("home")
+  res.render("home");
 });
 
 app.get("/about", function (req, res) {
   res.render("about", {});
 });
 
-app.listen(3000, () => {
-  console.log("listen in port 3000");
+app.listen(port, () => {
+  console.log("listen in port " + port);
 });
