@@ -28,6 +28,10 @@ app.get("/about", function (req, res) {
   res.render("about", {});
 });
 
+app.get('*',function (req, res) {
+  res.redirect('/home');
+});
+
 app.listen(port, () => {
   console.log("listen in port " + port);
 });
